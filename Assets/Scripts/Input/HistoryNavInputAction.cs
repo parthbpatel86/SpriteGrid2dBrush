@@ -9,14 +9,6 @@ public class HistoryNavInputActionManager : MonoBehaviour
     private InputAction _undoAction;
     private InputAction _redoAction;
 
-    void Update()
-    {
-        if (_undoAction != null && _undoAction.WasPressedThisFrame())
-            _colorManagerSO.Undo();
-        if (_redoAction != null && _redoAction.WasPressedThisFrame())
-            _colorManagerSO.Redo();
-    }
-
     private void OnEnable()
     {
         _keyboardControls = new HistoryNavControls();
@@ -31,5 +23,13 @@ public class HistoryNavInputActionManager : MonoBehaviour
         _undoAction.Disable();
         _redoAction.Disable();
         _keyboardControls.Disable();
+    }
+
+    void Update()
+    {
+        if (_undoAction != null && _undoAction.WasPressedThisFrame())
+            _colorManagerSO.Undo();
+        if (_redoAction != null && _redoAction.WasPressedThisFrame())
+            _colorManagerSO.Redo();
     }
 }

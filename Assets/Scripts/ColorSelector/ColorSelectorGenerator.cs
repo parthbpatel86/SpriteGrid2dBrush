@@ -22,6 +22,11 @@ public class ColorSelectorPopulator : MonoBehaviour
             Toggle toggle = go.GetComponent<Toggle>();
             toggle.group = toggleGp;
             toggle.colors = _colors[i].ColorToColorBlock(toggle.colors);
+            if (i == _colors.Count - 1)
+            {
+                toggle.isOn = true;
+                OnColorSelected(_colors[i]);
+            }
         }
     }
 

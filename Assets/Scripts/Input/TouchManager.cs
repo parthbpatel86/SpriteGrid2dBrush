@@ -1,31 +1,35 @@
-
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TouchManager : MonoBehaviour
 {
     [SerializeField] GridColorManagerSO _gridColorManager;
-    PlayerInput _playerInput;
+    ColorCellControls _inputActions;
     InputAction _touchPosAction;
     InputAction _touchPressAction;
     GridCell _prevcell;
 
     private void Awake()
     {
-        _playerInput = GetComponent<PlayerInput>();
-        _touchPosAction = _playerInput.actions.FindAction("TouchPosition");
-        _touchPressAction = _playerInput.actions.FindAction("TouchPress");
+        _inputActions = new ColorCellControls();
+        _touchPosAction = _inputActions.TouchCell.TouchPosition;
+        _touchPressAction = _inputActions.TouchCell.TouchPress;
     }
 
     private void OnEnable()
     {
+        _inputActions.Enable();
+        _touchPressAction.Enable();
+        _touchPosAction.Enable();
         _touchPressAction.performed += TouchStarted;
         _touchPosAction.performed += TouchPos;
     }
 
     private void OnDisable()
     {
+        _inputActions.Disable();
+        _touchPressAction.Disable();
+        _touchPosAction.Disable();
         _touchPressAction.performed -= TouchStarted;
         _touchPosAction.performed -= TouchPos;
     }
