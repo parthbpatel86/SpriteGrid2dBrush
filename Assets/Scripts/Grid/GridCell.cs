@@ -8,7 +8,7 @@ public class GridCell : MonoBehaviour
 {
     [SerializeField] GridColorManagerSO _gridManagerSO;
     SpriteRenderer _spriteRenderer;
-
+    Color _prevColor;
 
     void Start()
     {
@@ -17,8 +17,8 @@ public class GridCell : MonoBehaviour
 
     public Color OnColorChange(Color c)
     {
-        var prevColor = _spriteRenderer.color;
+        _prevColor = _spriteRenderer.color;
         _spriteRenderer.color = c;
-        return prevColor;
+        return _prevColor;
     }
 }

@@ -27,7 +27,6 @@ public class ColorSelectorPopulator : MonoBehaviour
 
     void OnColorSelected(Color color)
     {
-        Debug.Log("Selected "+ color.ToString());
         _gridManagerSO.OnCurrentColorChange(color);
     }
 }

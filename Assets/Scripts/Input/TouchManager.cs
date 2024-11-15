@@ -37,7 +37,6 @@ public class TouchManager : MonoBehaviour
 
     private void TouchPos(InputAction.CallbackContext context)
     {
-        
         var value = _touchPosAction.ReadValue<Vector2>();
         var worldPos = Camera.main.ScreenToWorldPoint(value);
         Vector2 vector2 = new Vector2(worldPos.x, worldPos.y);

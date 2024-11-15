@@ -7,8 +7,7 @@ using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "GridColorManagerSO", menuName = "ScriptableObject/Grid Color Manager")]
 public class GridColorManagerSO : ScriptableObject
-{    
-
+{
     [System.NonSerialized]
     public UnityEvent<Color> _selectedColorChanged;
 
@@ -30,7 +29,7 @@ public class GridColorManagerSO : ScriptableObject
         _currentSelectedColor = color;
         _selectedColorChanged.Invoke(_currentSelectedColor);
         _redo.Clear();
-        __redoBatch.Clear();
+        _redoBatch.Clear();
     }
 
     struct CellColor
@@ -49,7 +48,7 @@ public class GridColorManagerSO : ScriptableObject
     List<CellColor> _undo=new List<CellColor>();
     List<CellColor> _redo=new List<CellColor>();
     Stack<List<CellColor>> _undoBatch = new Stack<List<CellColor>>();
-    Stack<List<CellColor>> __redoBatch = new Stack<List<CellColor>>();
+    Stack<List<CellColor>> _redoBatch = new Stack<List<CellColor>>();
 
     public void BatchTouchStarted ()
     {
@@ -58,7 +57,6 @@ public class GridColorManagerSO : ScriptableObject
             _undoBatch.Push(_undo);
             _undo = new List<CellColor>();
         }
-        Debug.Log("batch started");
     }
 
     public void OnGridCellColorChange(GridCell cell)
@@ -74,8 +72,8 @@ public class GridColorManagerSO : ScriptableObject
         if (_undoBatch.Count == 0) return;
 
         var entry = _undoBatch.Pop();
-        __redoBatch.Push(entry);
-        for (int i = 0; i < entry.Count; i++)
+        _redoBatch.Push(entry);
+        for (int i = entry.Count - 1; i >= 0; i--)
         {
             entry[i].cell.OnColorChange(entry[i].prevColor);
         }
@@ -83,9 +81,9 @@ public class GridColorManagerSO : ScriptableObject
 
     public void Redo()
     {
-        if (__redoBatch.Count == 0) return;
+        if (_redoBatch.Count == 0) return;
 
-        var entry = __redoBatch.Pop();
+        var entry = _redoBatch.Pop();
         _undoBatch.Push(entry);
         for (int i = 0; i < entry.Count; i++)
         {
