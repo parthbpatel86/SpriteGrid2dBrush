@@ -1,0 +1,54 @@
+{
+    "name": "HistoryNavControls",
+    "maps": [
+        {
+            "name": "HistoryNavigate",
+            "id": "0c8fd15e-2303-45fd-a9f7-6b340d73e564",
+            "actions": [
+                {
+                    "name": "Undo",
+                    "type": "Button",
+                    "id": "9296d7c5-7321-4365-bbfa-d0e5b581d90d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Redo",
+                    "type": "Button",
+                    "id": "45db3b36-1fd6-4609-9b6c-90317bb05455",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3147a2cc-d06e-40c4-8d31-f39a3eb6ca2f",
+                    "path": "<Keyboard>/#(A)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Undo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6fbf3214-8c61-456f-908b-68e40fd68d77",
+                    "path": "<Keyboard>/#(S)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Redo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
